@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: DebitCard Service API
+  description: |
+    API para gestión de cuentas de debito
+  version: 1.0.0
+  contact:
+    name: Equipo Bancario
+    email: desarrollo@nttdata.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: https://localhost:8089/api/v1
+    description: Servidor local de desarrollo
+
+tags:
+  - name: Debitcard
+    description: Operaciones con clientes bancarios
+
+paths:
+  /debitcard:
+    post:
+      tags: [Debitcard]
+      summary: Crear nueva tarjeta de débito
+      operationId: create
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DebitCardDto'
+      responses:
+        '201':
+          description: Tarjeta de débido creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DebitCardDto'
+
+  /debitcard/{debitNumber}:
+    get:
+      tags: [Debitcard]
+      summary: lista todas las tarjetas de débito
+      operationId: findByDebitNumber
+      parameters:
+        - $ref: '#/components/parameters/debitNumber'
+      responses:
+        '200':
+          description: Detalles de la tarjeta de debito obtenidos exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DebitCardDto'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    DebitCardDto:
+      type: object
+      properties:
+        cardNumber:
+          type: string
+          example: "8976-8897-1198-9098"
+        documentNumber:
+          type: string
+          example: "87876523"
+        primaryAccountId:
+          type: string
+          example: "98976765654"
+        linkedAccountIds:
+          type: array
+          items:
+            type: string
+            example: "321321"
+
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: "2023-01-15T10:00:00Z"
+        status:
+          type: integer
+          example: 400
+        error:
+          type: string
+          example: "Bad Request"
+        message:
+          type: string
+          example: "El nro de tarjeta ya está registrado"
+        path:
+          type: string
+          example: "/api/v1/debitcard"
+
+  parameters:
+    debitNumber:
+      name: debitNumber
+      in: path
+      required: true
+      description: ID único de tarjeta de débito
+      schema:
+        type: string
+        format: string
+        example: "9898-1234-1234-1234"
+
+  responses:
+    BadRequest:
+      description: Solicitud inválida
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    NotFound:
+      description: Recurso no encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    InternalServerError:
+      description: Error interno del servidor
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

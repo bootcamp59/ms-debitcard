@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 
@@ -12,11 +13,12 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountInfo {
-
-    private String productoId;
+public class Transaction {
+    private BigDecimal amount;
+    private String originProductId;
+    private String destinyProductId;
     private String document;
-    private String banco;
-    private String type;
-    private BigDecimal saldo;
+    private String description;
+    private String tipo;
+
 }

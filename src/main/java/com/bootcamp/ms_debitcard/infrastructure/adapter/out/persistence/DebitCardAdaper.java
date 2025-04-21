@@ -1,14 +1,13 @@
 package com.bootcamp.ms_debitcard.infrastructure.adapter.out.persistence;
 
 import com.bootcamp.ms_debitcard.application.port.out.DebitCardRepositoryPort;
+import com.bootcamp.ms_debitcard.domain.dto.Transaction;
 import com.bootcamp.ms_debitcard.domain.model.DebitCard;
 import com.bootcamp.ms_debitcard.infrastructure.adapter.out.persistence.mapper.DebitCardEntityMapper;
 import com.bootcamp.ms_debitcard.infrastructure.adapter.out.persistence.repository.mongodb.DebitCardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
-
-import java.util.Objects;
 
 @Repository
 @RequiredArgsConstructor

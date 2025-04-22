@@ -131,27 +131,28 @@
 			<plugin>
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
-				<version>7.12.0</version> <executions>
-				<execution>
-					<goals>
-						<goal>generate</goal>
-					</goals>
-					<configuration>
-						<inputSpec>${project.basedir}/src/main/resources/openapi/debitcard-contract.yml</inputSpec>
-						<generatorName>spring</generatorName>
-						<apiPackage>com.bootcamp.ms_debitcard.infrastructure.adapter.in.api</apiPackage>
-						<modelPackage>com.bootcamp.ms_debitcard.infrastructure.adapter.in.model</modelPackage>
+				<version>7.12.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<inputSpec>${project.basedir}/src/main/resources/openapi/debitcard-contract.yml</inputSpec>
+							<generatorName>spring</generatorName>
+							<apiPackage>com.bootcamp.ms_debitcard.infrastructure.adapter.in.api</apiPackage>
+							<modelPackage>com.bootcamp.ms_debitcard.infrastructure.adapter.in.model</modelPackage>
 
-						<configOptions>
-							<library>spring-boot</library>
-							<interfaceOnly>true</interfaceOnly>
-							<useSpringBoot3>true</useSpringBoot3>
-							<reactive>true</reactive>
-							<skipDefaultInterface>true</skipDefaultInterface>
-						</configOptions>
-					</configuration>
-				</execution>
-			</executions>
+							<configOptions>
+								<library>spring-boot</library>
+								<interfaceOnly>true</interfaceOnly>
+								<useSpringBoot3>true</useSpringBoot3>
+								<reactive>true</reactive>
+								<skipDefaultInterface>true</skipDefaultInterface>
+							</configOptions>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
